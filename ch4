@@ -82,7 +82,45 @@ ch4_2
     - 공통점 1 : 실 인수값을 변경할 수 있다.
     - 차이점 1 : 참조값을 전달하면 참조 변수와 참조 대상 변수의 주소값이 일치하므로 메모리의 값을 읽고 쓰기 위한 문법이 필요 없다.
     - 차이점 2 : 주소값을 전달하면 주소값을 전달받은 변수의 주소와 실제 변수의 주소값이 다르다. 그래서 주소값을 받기 위한 포인터 변수를 사용해야한다. 즉, 포인터 문법이 필요.
-    - 불편함 1 : 
+    - 불편함 1 : 포인터를 사용하면 의도하지 않은 예외가 발생할 수 있다.(예: 잘못된 주소 접근)
+    - 불편함 2 : 포인터의 문법은 복잡하다.
+  - auto문 : 변수의 타입을 자동으로 추론
+    #include<iostream>
+    #include<vector>
+    #include<map>
+    #include<string>
+    using namespace std;
+    int main(){
+      auto num = 42; //int로 추론
+      auto pi = 3.14159; //double로 추론
+      auto greeting = strint("Hello, wprld!"); //string으로 추론
+      return 0;
+    }
+  - 범위 기반 반복문 : 배열이나 컨테이너의 모든 원소를 순회할 때 사용
+    #include<iostream>
+    #include<vector>
+    #include<map>
+    #include<map>
+    using namespace std;
+    int main(){
+      //vector
+      vector<int> vet = {1, 2, 3, 4, 5};
+      for(int num : vet) { //(타입 변수명 : 컨테이너)
+        cout << num << " "; //출력: 1 2 3 4 5
+      }
+      //map
+      map<string, int> fruitMap = {{"apple", 1}, {"banana", 2}, {"charry", 3}};
+      for(const auto& pair : fruitMap) { //(타입 변수명 : 컨테이너)
+        cout << pair.first << "=" << pair.second << " "; //출력: apple = 1 banana = 2 charry = 3
+      }
+      //set
+      set<string> fruitSet = {"apple", "banana"m "charry"};
+      for(const auto& fruit : fruitSet) { //(타입 변수명 : 컨테이너)
+        cout << fruit << " "; //출력: apple banana charry
+      }
+    }
+* 반복자(iterator): 컨테이너의 종류와 솬계없이 원소들을 순회하고 접근할 수 있게 해줌
+  - 순방향 반복자(forward iterator)
 ch4_3
 ch4_4
 ch4_5
