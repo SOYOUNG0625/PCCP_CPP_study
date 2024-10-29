@@ -120,7 +120,41 @@ ch4_2
       }
     }
 * 반복자(iterator): 컨테이너의 종류와 솬계없이 원소들을 순회하고 접근할 수 있게 해줌
-  - 순방향 반복자(forward iterator)
+  - 순방향 반복자(forward iterator) : begin()첫 원소의 위치, end()마지막 원소의 위치
+    - 컨테이너를 순회하는 과정이 있는 STL의 특징
+      1. 대부분 시작 위치와 끝 위치를 받고 이때 시작 위치는 begin(), 끝 위치는 end()로 넘기는 경우가 많다. 이는 begin()부터 end()바로 직전까지 순회라는 의미이다.
+      2. 특정 원소를 탐색하거나 조건에 맞는 원소를 찾는 의 경우에는 해당 원소를 찾으면 위치를 반환하고, 그렇지 않으면 end()를 반환한다.
+    #include<iostream>
+    #include<algorithm>
+    #include<vector>
+    #include<map>
+    using namespace std;
+    int main(){
+      //vector
+      vector<int> vec = {10, 20, 30, 40, 50};
+      for(auto it = vec.begin(); it != vec.end(), ++it) {
+        cout << *it << " ";
+      } cout << endl; //출력: 10 20 30 40 50
+      auto result = find(vec.begin(), vec.end(), 30);
+      if(result != vec.end()) {
+        cout << "Found: " << *result << endl;
+      } else {
+        cout << "Not found" << endl;
+      } //출력: 30
+      //map
+      map<string, int> myMap = {{"apple, 1}, {"banana", 2}, {"charry", 3}};
+      for(auto it = myMap.begin(); it != myMap.end(); ++it) {
+        cout << it->first << ":" << it->second << " "; //출력: apple:1 banana:2 charry:3
+      }
+      auto result = myMap.find("banana");
+      if(result != myMap.end()) {
+        cout << "Found: " << result->first << "->" << result->second << endl;
+      } else {
+        cout << "Not found" << endl;
+      } //출력: Found: banana->2
+      return 0;
+    }
+  - 역순방향 반복자 : 
 ch4_3
 ch4_4
 ch4_5
