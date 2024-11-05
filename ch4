@@ -242,11 +242,16 @@ ch4_3
     studentScores["Bob"] = 88;
     studentScores["Charlie"] = 92;
     int score1 = studentScores["Alice"]; //score1 == 95
-    int score2 = studentScores["rabbit"]; //score2 == 0
+    int score2 = studentScores["rabbit"]; //새로 생성/score2 == 0
     auto it = studentScores.find("Charlie");
     if(it != studentScores.end()){
       int score3 = it->second; //score3 == 92
     }
+    map<string, int> myMap = {{"Apple", 1}, {"Banana", 2}, {"Charry", 3}};
+    myMap["Banana"] = 10; //{"Banana", 2} -(값 변경)-> {"Banana", 10}
+    map<int, string> myMap;
+    
+    return 0;
   }
 ch4_4
 ch4_5
