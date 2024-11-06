@@ -250,7 +250,19 @@ ch4_3
     map<string, int> myMap = {{"Apple", 1}, {"Banana", 2}, {"Charry", 3}};
     myMap["Banana"] = 10; //{"Banana", 2} -(값 변경)-> {"Banana", 10}
     map<int, string> myMap;
-    
+    //삽입
+    myMap.insert(make_pair(1, "Apple"));
+    myMap.insert({2, "Banana"});
+    myMap[3] = "Cherry";
+    //myMap ==  {{1, "Apple"}, {2, "Banana"}, {3, "Cherry"}}
+    //삭제
+    myMap.erase(2)
+    //myMap ==  {{1, "Apple"}, {3, "Cherry"}}
+    auto it = myMap.find(3);
+    if(it != myMap.end()){
+      myMap.erase(it);
+    }
+    //myMap ==  {{1, "Apple"}}
     return 0;
   }
 ch4_4
