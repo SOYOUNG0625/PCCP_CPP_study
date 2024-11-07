@@ -332,6 +332,18 @@ ch4_4 STL의 알고리즘
     }
     return a.x < b.x;
   }
+  int main(){
+    vector<Point> points = {{3, 4}, {1, 2}, {3, 1}, {2, 5}};
+    sort(points.begin(), points.end(), compare); //반환값이 false일 때 원소의 위치를 바꿈
+    for(const Point &p : points){
+      cout << "(" << p.x << ", " << p.y << ")";
+    } //(1, 2), (2, 5), (3, 1), (3, 4)
+    cout << endl;
+    return 0;
+  }
+*next_permutation() 함수로 순열 생성하기 O(N*N!)
+ : 가능한 모든 순열 생성(사전 순)
+
 ch4_5 함수
 
 ch4_6 코딩테스트 코드 및 구현 노하우
