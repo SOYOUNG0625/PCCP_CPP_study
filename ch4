@@ -306,15 +306,31 @@ ch4_4 STL의 알고리즘
     return 0;
   }
 *sort() 함수로 정렬하기 O(NlogN)
+  //인수 2개
   #include<iostream>
   #include<vector>
   #include<algorithm>
   using namespace std;
   int main(){
     vector<int> v = {1, 4, 3, 4, 5, 4, 5};
-    sort(v.begin(), v.end()); //v == {1, 2, 3, 4, 5}
-    sort(v.rbegin(), v.rend()); //v == {5, 4, 3, 2, 1}
+    sort(v.begin(), v.end()); //오름차순 v == {1, 2, 3, 4, 5}
+    sort(v.rbegin(), v.rend()); //내림차순 v == {5, 4, 3, 2, 1}
     return 0;
+  }
+  //인수 3개
+  #include<algorithm>
+  #include<iostream>
+  #include<vector>
+  using namespace std;
+  struct Point{
+    int x, y;
+    Ponit(int x, int y) : x(x), y(y) {}
+  };
+  bool compare(const Point &a, const Point &b){
+    if(a.x == b.x){
+      return a.y < b.y;
+    }
+    return a.x < b.x;
   }
 ch4_5 함수
 
