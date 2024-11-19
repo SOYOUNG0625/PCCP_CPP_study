@@ -32,5 +32,19 @@ ch5_3 몸풀기 문제
   }
 
 *문제 02 배열 제어하기
-  : sort(arr.end(), arr.begin()) (x)
-    rsort(arr.end(), arr.begin()) (x)
+  : 정렬 후 같은 숫자 삭제
+    #include <vector>
+    #include <algorithm>
+    using namespace std;
+    
+    bool compare(int a, int b) {
+        return a > b; //역순정렬
+    }
+    
+    vector<int> solution(vector<int> lst) {
+        sort(lst.begin(), lst.end(), compare); //역순정렬
+        auto newEnd = unique(lst.begin(), lst.end());
+        vector<int> relst(lst.begin(), newEnd); //새로운 벡터
+        return relst;
+    
+    }
