@@ -1,1 +1,36 @@
+ch5_1 배열 개념
 
+*배열 선언
+  int arr1[] = {1, 2, 3, 4, 5} //크기 5
+  int arr2[5] = {1, 2} //{1, 2, 0, 0, 0}
+  int arr3[5] = {} //{0, 0, 0, 0, 0}
+  int arr4[] //{모름(쓰레기 값)}
+
+*베열과 차원
+
+
+ch5_2 배열의 효율성
+
+*배열 연상의 시간 복잡도
+
+*배열 선언
+  int arr1[] = {1, 2, 3, 4, 5} //크기 5
+  int arr2[5] = {1, 2} //{1, 2, 0, 0, 0}
+  int arr3[5] = {} //{0, 0, 0, 0, 0}
+  int arr4[] //{모름(쓰레기 값)}
+
+*베열과 차원
+
+
+ch5_3 몸풀기 문제
+
+*문제 01 배열 정리하기
+  : sort(arr.begin(), arr.end())를 사용 O(NlogN)
+  vector<int> solution(vector<int> arr) {
+      sort(arr.begin(), arr.end());
+      return arr; //sort(arr.begin(), arr.end())s는 반환 불가
+  }
+
+*문제 02 배열 제어하기
+  : sort(arr.end(), arr.begin()) (x)
+    rsort(arr.end(), arr.begin()) (x)
