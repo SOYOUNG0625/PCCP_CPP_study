@@ -1,0 +1,120 @@
+ch4_2 STL
+- call by value
+- call by reference
+- 참조값(&) 전달과 주소값(*) 전달의 공통점과 차이점
+- auto문 : 변수의 타입을 자동으로 추론
+- 범위 기반 반복문 : 배열이나 컨테이너의 모든 원소를 순회할 때 사용
+- 순방향 반복자(forward iterator) : begin()첫 원소의 위치, end()마지막 원소의 위치
+- 역순방향 반복자 : 컨테이너의 끝에서 시작으로 이동, 기본적인 개념은 같으나 ++연산자를 쓸 떄 뒤로 가는 것이 아닌 반대로 앞으로 간다.
+
+
+* STL
+  : C++에서 제공하는 템플릿 기반의 표준 라이브러리
+  - 구성
+    - 컨테이너(container)
+    - 알고리즘(algorithm)
+    - 반복자(iterator)
+* STL과 자주 사용하는 필수 문법
+  - 상수 레퍼런스
+    - call by value : 함수의 인수로 값을 전달할 떄 값을 복사
+      #include<iostream>
+      using namespace std;
+      void modify(int value){
+        value = 10; //vlaue 주소 : 0x7fff84f16e5c(새 공간), 값 : 10
+      } //함수가 종료되면 modify() 함수의 value는 메모리에서 사라짐
+      int main(){
+        int vlaue = 5; //vlaue 주소 : 0x7fff84f16e74, 값 : 5
+        modify(value); //main() 함수의 value 안 바뀜
+        return 0; //vlaue 주소 : 0x7fff84f16e74, 값 : 5
+      }
+    - call by reference : 복사하지 않고 레퍼런스(&)를 활용해 넘김
+      #include<iostream>
+      using namespace std;
+      void modify(int& value){
+        value = 10; //vlaue 주소 : 0x7fff84f16e74, 값 : 10
+      } //함수가 종료되면 modify() 함수의 value는 메모리에서 사라짐
+      int main(){
+        int vlaue = 5; //vlaue 주소 : 0x7fff84f16e74, 값 : 5
+        modify(value); //main() 함수의 value 바뀜
+        return 0; //vlaue 주소 : 0x7fff84f16e74, 값 : 10
+      }
+  - 참조값(&) 전달과 주소값(*) 전달의 공통점과 차이점은?
+    - 공통점 1 : 실 인수값을 변경할 수 있다.
+    - 차이점 1 : 참조값을 전달하면 참조 변수와 참조 대상 변수의 주소값이 일치하므로 메모리의 값을 읽고 쓰기 위한 문법이 필요 없다.
+    - 차이점 2 : 주소값을 전달하면 주소값을 전달받은 변수의 주소와 실제 변수의 주소값이 다르다. 그래서 주소값을 받기 위한 포인터 변수를 사용해야한다. 즉, 포인터 문법이 필요.
+    - 불편함 1 : 포인터를 사용하면 의도하지 않은 예외가 발생할 수 있다.(예: 잘못된 주소 접근)
+    - 불편함 2 : 포인터의 문법은 복잡하다.
+  - auto문 : 변수의 타입을 자동으로 추론
+    #include<iostream>
+    #include<vector>
+    #include<map>
+    #include<string>
+    using namespace std;
+    int main(){
+      auto num = 42; //int로 추론
+      auto pi = 3.14159; //double로 추론
+      auto greeting = strint("Hello, wprld!"); //string으로 추론
+      return 0;
+    }
+  - 범위 기반 반복문 : 배열이나 컨테이너의 모든 원소를 순회할 때 사용
+    #include<iostream>
+    #include<vector>
+    #include<map>
+    #include<map>
+    using namespace std;
+    int main(){
+      //vector
+      vector<int> vet = {1, 2, 3, 4, 5};
+      for(int num : vet) { //(타입 변수명 : 컨테이너)
+        cout << num << " "; //출력: 1 2 3 4 5
+      }
+      //map
+      map<string, int> fruitMap = {{"apple", 1}, {"banana", 2}, {"charry", 3}};
+      for(const auto& pair : fruitMap) { //(타입 변수명 : 컨테이너)
+        cout << pair.first << "=" << pair.second << " "; //출력: apple = 1 banana = 2 charry = 3
+      }
+      //set
+      set<string> fruitSet = {"apple", "banana"m "charry"};
+      for(const auto& fruit : fruitSet) { //(타입 변수명 : 컨테이너)
+        cout << fruit << " "; //출력: apple banana charry
+      }
+    }
+* 반복자(iterator): 컨테이너의 종류와 솬계없이 원소들을 순회하고 접근할 수 있게 해줌
+  - 순방향 반복자(forward iterator) : begin()첫 원소의 위치, end()마지막 원소의 위치
+    - 컨테이너를 순회하는 과정이 있는 STL의 특징
+      1. 대부분 시작 위치와 끝 위치를 받고 이때 시작 위치는 begin(), 끝 위치는 end()로 넘기는 경우가 많다. 이는 begin()부터 end()바로 직전까지 순회라는 의미이다.
+      2. 특정 원소를 탐색하거나 조건에 맞는 원소를 찾는 의 경우에는 해당 원소를 찾으면 위치를 반환하고, 그렇지 않으면 end()를 반환한다.
+    #include<iostream>
+    #include<algorithm>
+    #include<vector>
+    #include<map>
+    using namespace std;
+    int main(){
+      //vector
+      vector<int> vec = {10, 20, 30, 40, 50};
+      for(auto it = vec.begin(); it != vec.end(), ++it) {
+        cout << *it << " ";
+      } cout << endl; //출력: 10 20 30 40 50
+      auto result = find(vec.begin(), vec.end(), 30);
+      if(result != vec.end()) {
+        cout << "Found: " << *result << endl;
+      } else {
+        cout << "Not found" << endl;
+      } //출력: 30
+      //map
+      map<string, int> myMap = {{"apple, 1}, {"banana", 2}, {"charry", 3}};
+      for(auto it = myMap.begin(); it != myMap.end(); ++it) {
+        cout << it->first << ":" << it->second << " "; //출력: apple:1 banana:2 charry:3
+      }
+      auto result = myMap.find("banana");
+      if(result != myMap.end()) {
+        cout << "Found: " << result->first << "->" << result->second << endl;
+      } else {
+        cout << "Not found" << endl;
+      } //출력: Found: banana->2
+      return 0;
+    }
+  - 역순방향 반복자 : 컨테이너의 끝에서 시작으로 이동, 기본적인 개념은 같으나 ++연산자를 쓸 떄 뒤로 가는 것이 아닌 반대로 앞으로 간다.
+    rbegin()마지막 원소의 위치, rend()첫 원소의 바로 직전 위치
+    위 코드의 begin자리에 rbegin이 들어가고 end자리에 rend이 들어간다.
+      - 출력값은 각각 역순으로 출력된다.
