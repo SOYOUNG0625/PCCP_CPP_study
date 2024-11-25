@@ -1,0 +1,48 @@
+* 빌드인 데이터 타입
+  - 정수형(int)
+    int a = 13;
+  - 부동소수형(float/double)
+    float f = 1.5f; //4bytes
+    double d = 2.5; //8bytes
+    - 형 변환
+      #include<iostream>
+      using namespace std;
+      int main(){
+        int i = 65;
+        float f = 5.2f;
+        double d = i + f; //암시적 형 변환
+        cout << d << endl; //70.2
+        cout << static_cast<int>(d) << endl; //70
+        cout << static_cast<char>(i) << endl; //'A'
+      return 0;
+      }
+  - 논리형(bool)
+    
+  - 문자형(char)
+    -문자열
+      #include<iostream>
+      #include<string>
+      using namespace std;
+      int main(){
+        string s1; //빈 문자열 선언
+        string s2 = "Hello World!"; //문자열 직접 초기화
+        string s3(s2); // 문자옇 복사
+        stirng s4(s2, 0, 5); // 문자열 부분 복사 초기화 /"Hello"
+        string s5(10, *); //반복된 문자로 문자열 초기화 /"**********"
+        return 0;
+      }
+    - 문자열 찾기 (O(N))
+      find(찾으려는 문자열), find(찾으려는 문자열, 탐색 시작 위치) : 해당 문자열이 시작하는 인덱스 위치 반환(없으면 string::nops(= 18446744073709551615) 반환
+      size_t pos = s2.find("Hello"); //pos == 0; , size_t는 컨테이너나 문자열의 크기 및 인덱스를 표현할 때 사용
+    - 문자열 추가, 수정
+      #include<iostrean>
+      #include<string>
+      using namespace std;
+      int main(){
+        string s = "APPLE";
+        s += ", World!"; //s == "APPLE, World!"
+        s[7] = 'P'; //s == "APPLE, Porld!"
+        str.replace(7, 4, "Col"); //s == "APPLE, Cold!" (Porl -> Col)
+        return 0;
+      }
+  - 배열(array)
